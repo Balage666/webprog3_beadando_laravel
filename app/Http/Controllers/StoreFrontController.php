@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 
 class StoreFrontController extends Controller
 {
-    public function Index() {
+    public function Index(Request $request) {
 
-        $GardenTools = GardenTool::paginate(8);
+        //dd($request->searchInput);
+        $GardenTools = $request->searchInput ? GardenTool::where('name', 'LIKE', '%'.$request->searchInput.'%')
+        ->orWhere('description', 'LIKE', '%'.$request->searchInput.'%')->paginate(8) : GardenTool::paginate(8);
 
         // $GardenTools = [];
         return view('storefront.index', ['GardenTools' => $GardenTools]);
