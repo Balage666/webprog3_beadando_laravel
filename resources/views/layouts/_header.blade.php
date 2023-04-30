@@ -22,20 +22,34 @@
                 @auth
                     @if (Auth::User()->role == 'admin')
 
-                    <a class="nav-item nav-link btn btn-secondary {{ Request::is('gardentool/create') ? 'active' : '' }}" href="{{ url('/gardentool/create') }}">Create new Gardening Tool <i class="fa-solid fa-square-plus"></i> </a>
+                        <a class="nav-item nav-link btn btn-secondary {{ Request::is('gardentool/create') ? 'active' : '' }}" href="{{ url('/gardentool/create') }}">Create new Gardening Tool <i class="fa-solid fa-square-plus"></i> </a>
 
                     @endif
                 @endauth
 
-                <form action="#" method="GET" class="mx-2 my-auto d-inline w-90">
-                    <div class="input-group">
-                        <input type="search" name="searchInput" class="form-control border border-end-0" placeholder="Search...">
-                        <button type="submit" class="btn btn-secondary border border-5 border-dark">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
+                @if ( Request::is('/*') )
 
+                    <form action="{{ url('/') }}" method="GET" class="mx-2 my-auto d-inline w-90">
+                        <div class="input-group">
+                            <input type="search" name="searchInput" value="{{ request()->input('searchInput') }}" class="form-control border border-end-0" placeholder="Search...">
+                            <button type="submit" class="btn btn-secondary border border-5 border-dark">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                @elseif (Request::is('admin'))
+
+                    <form action="{{ url('/admin') }}" method="GET" class="mx-2 my-auto d-inline w-90">
+                        <div class="input-group">
+                            <input type="search" name="searchInput" value="{{ request()->input('searchInput') }}" class="form-control border border-end-0" placeholder="Search...">
+                            <button type="submit" class="btn btn-secondary border border-5 border-dark">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                @endif
 
             </div>
 
