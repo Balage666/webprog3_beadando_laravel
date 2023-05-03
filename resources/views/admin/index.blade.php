@@ -1,7 +1,7 @@
 @extends('main')
 
 @section('title')
-    <title>Dashboard ✅</title>
+    <title>Admin site 🔧 </title>
 @endsection
 
 @section('content')
@@ -10,13 +10,14 @@
     <div class="container bg-dark text-white p-5 rounded-5 mb-4">
 
         @if (Session::has('message'))
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
                 {{ Session::get('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
         <div class="row justify-content-center gap-3">
-            <h1 class="text-center">Dashboard ✅ </h1>
+            <h1 class="text-center">Manage Products <i class="fa-solid fa-wrench"></i> </h1>
 
             @forelse ($GardenTools as $gardenTool)
                 <div class="card bg-secondary text-white mb-4 border border-5 {{ $gardenTool->stock == 0 ? "border-danger" : "border-info" }}" style="width: 18rem;">

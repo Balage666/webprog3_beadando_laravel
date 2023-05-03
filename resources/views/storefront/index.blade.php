@@ -10,8 +10,9 @@
     <div class="container bg-dark text-white p-5 rounded-5 mb-4">
 
         @if (Session::has('message'))
-            <div class="alert alert-primary" role="alert">
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
                 {{ Session::get('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
