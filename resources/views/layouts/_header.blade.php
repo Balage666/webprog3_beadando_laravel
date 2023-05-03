@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-        <a class="navbar-brand ms-0 ms-lg-5" href="/"> <i class="fa-brands fa-laravel"></i> SimGatLa</a>
+        <a class="navbar-brand ms-0 ms-lg-5" href="/"> <i class="fa-brands fa-laravel"></i> {{ env('BRAND') }}</a>
 
         <button
                 class="navbar-toggler"
