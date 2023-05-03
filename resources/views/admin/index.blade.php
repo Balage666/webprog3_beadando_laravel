@@ -33,7 +33,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">{{ $gardenTool->name }}</h5>
-                        <p class="card-text">{{ $gardenTool->description }}</p>
+                        <p class="card-text">{{ Str::words($gardenTool->description, 15, $end=' (...) ') }}</p>
                     </div>
 
                     <div class="card-footer">
