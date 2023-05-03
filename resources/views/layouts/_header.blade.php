@@ -82,7 +82,7 @@
                             <a class="dropdown-item btn btn-secondary">{{ Auth::User()->first_name.' '.Auth::User()->last_name }}<i class="fa-solid fa-person"></i> </a>
 
                             @if (Auth::User()->role == 'admin')
-                                <a class="dropdown-item btn btn-secondary {{ Request::is('admin') ? 'active' : '' }} " href="{{ url('/admin') }}">Dashboard <i class="fa-solid fa-toolbox"></i> </a>
+                                <a class="dropdown-item btn btn-secondary {{ Request::is('admin') ? 'active' : '' }} " href="{{ url('/admin') }}">Product Management <i class="fa-solid fa-toolbox"></i> </a>
                             @endif
 
                             <hr class="dropdown-divider">
