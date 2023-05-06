@@ -41,7 +41,7 @@
                         <p class="card-text border {{ $gardenTool->stock == 0 ? "border-danger bg-danger" : "border-info bg-info" }} border-info bg-info rounded-pill text-center">Price: {{ $gardenTool->price }} Ft. </p>
                         <div class="d-flex justify-content-center gap-2">
                             <a href="/gardentool/show/{{ $gardenTool->id }}" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-info" }} text-white">Show <i class="fa-solid fa-eye"></i> </a>
-                            <a href="#" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-primary" }}">Add to Cart <i class="fa-solid fa-cart-plus"></i> </a>
+                            <a href="/cart/add/{{ $gardenTool->id }}" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-primary" }}">Add to Cart <i class="fa-solid fa-cart-plus"></i> </a>
                         </div>
                     </div>
 

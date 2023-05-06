@@ -39,7 +39,7 @@
           </div>
             <div class="card-footer d-flex justify-content-center gap-2">
                 <button onclick="history.back();" class="btn btn-secondary btn-lg">Back to Storefront <i class="fa-solid fa-arrow-left"></i> </button>
-                <a href="#" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-primary" }}  btn-block btn-lg">Add to Cart <i class="fa-solid fa-cart-plus"></i> </a>
+                <a href="/cart/add/{{ $gardenTool->id }}" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-primary" }}  btn-block btn-lg">Add to Cart <i class="fa-solid fa-cart-plus"></i> </a>
             </div>
         </div>
       </div>
