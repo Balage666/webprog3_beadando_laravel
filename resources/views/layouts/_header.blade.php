@@ -55,15 +55,15 @@
 
             <div class="navbar-nav ms-auto">
 
-                @if ( Request::is('/') )
+                <a class="nav-item nav-link btn btn-secondary" href="#"> <span class="badge bg-success">{{ Session::has('cart') ? Session::get('cart')->totalQuantity : '' }}</span> Shopping Cart <i class="fa-solid fa-shopping-cart"></i> </a>
+
+                @if ( Request::is('/'))
 
                     @auth
                         <a class="nav-item nav-link btn btn-secondary" href="#">Order History <i class="fa-solid fa-gifts"></i> </a>
                     @endauth
 
                 @endif
-
-
 
                 <div class="dropstart">
                     <a
