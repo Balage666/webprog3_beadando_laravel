@@ -55,7 +55,7 @@
 
             <div class="navbar-nav ms-auto">
 
-                <a class="nav-item nav-link btn btn-secondary" href="#"> <span class="badge bg-success">{{ Session::has('cart') ? Session::get('cart')->totalQuantity : '' }}</span> Shopping Cart <i class="fa-solid fa-shopping-cart"></i> </a>
+                <a class="nav-item nav-link btn btn-secondary {{ Request::is('cart/view') ? 'active' : '' }}" href="{{ url('/cart/view') }}"> <span class="badge bg-success">{{ Session::has('cart') ? Session::get('cart')->totalQuantity : '' }}</span> Shopping Cart <i class="fa-solid fa-shopping-cart"></i> </a>
 
                 @if ( Request::is('/'))
 
