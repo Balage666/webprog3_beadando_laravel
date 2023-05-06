@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\GardenTool;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class GardenToolController extends Controller
 {
@@ -134,5 +135,17 @@ class GardenToolController extends Controller
 
         return redirect('/admin')->with('message','Tool has been deleted!');
 
+    }
+
+    public function AddToCart(Request $request, GardenTool $GardenTool)
+    {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->Add($GardenTool, $GardenTool->id);
+
+        $request->session()->put('cart', $cart);
+        // dd($request->session()->get('cart'));
+
+        return redirect('/');
     }
 }
