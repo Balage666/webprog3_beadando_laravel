@@ -16,6 +16,13 @@
             </div>
         @endif
 
+        @if (Session::has('add-to-cart-failed'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ Session::get('add-to-cart-failed') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
         <div class="row justify-content-center gap-3">
             <h1 class="text-center">View our products! <i class="fa-brands fa-product-hunt"></i> </h1>
 
