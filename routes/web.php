@@ -23,6 +23,8 @@ Route::get('/gardentool/show/{GardenTool}', [GardenToolController::class, 'Show'
 
 Route::get('/cart/view', [GardenToolController::class, 'ViewCart']);
 Route::get('/cart/add/{GardenTool}', [GardenToolController::class, 'AddToCart']);
+Route::get('cart/reducebyone/{GardenTool}', [GardenToolController::class, 'ReduceByOne']);
+Route::get('/cart/remove/{GardenTool}', [GardenToolController::class, 'RemoveItem']);
 
 Route::group(['middleware' => ['auth','auth.admin']], function () {
     Route::get('/admin', [AdminController::class, 'Index']);
