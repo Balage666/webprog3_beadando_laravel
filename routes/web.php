@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [StoreFrontController::class, 'Index']);
 Route::get('/gardentool/show/{GardenTool}', [GardenToolController::class, 'Show']);
 
+Route::get('/cart/add/{GardenTool}', [GardenToolController::class, 'AddToCart']);
+
 Route::group(['middleware' => ['auth','auth.admin']], function () {
     Route::get('/admin', [AdminController::class, 'Index']);
 
