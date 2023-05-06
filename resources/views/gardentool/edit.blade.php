@@ -78,8 +78,6 @@
                         label="Edit Image:"
                     />
                     <div class="d-flex justify-content-center gap-2">
-                        <button onclick="history.back();"
-                            class="btn btn-secondary btn-lg text-white">Back to Storefront <i class="fa-solid fa-arrow-left"></i> </button>
 
                         <button type="submit"
                             class="btn btn-primary btn-block btn-lg gradient-custom-4 text-white">Update <i class="fa-solid fa-wrench"></i> </button>
