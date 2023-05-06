@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="card-footer">
-                        <p class="card-text border {{ $gardenTool->stock == 0 ? "border-danger bg-danger" : "border-info bg-info" }} border-info bg-info rounded-pill text-center">Price: {{ $gardenTool->price }} Ft. </p>
+                        <p class="card-text border {{ $gardenTool->stock == 0 ? "border-danger bg-danger" : "border-info bg-info" }} border-info bg-info rounded-pill text-center">Price: {{ number_format($gardenTool->price, 0, '.', ' ') }} Ft. </p>
                         <div class="d-flex justify-content-center gap-2">
                             <a href="/gardentool/edit/{{ $gardenTool->id }}" class="btn {{ $gardenTool->stock == 0 ? "btn-danger" : "btn-info" }} text-white">Update <i class="fa-solid fa-wrench"></i> </a>
                             <a href="/gardentool/delete/{{ $gardenTool->id }}" class="btn btn-warning text-white">Delete <i class="fa-solid fa-trash-can"></i> </a>
