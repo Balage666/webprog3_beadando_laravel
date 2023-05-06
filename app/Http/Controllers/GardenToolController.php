@@ -137,15 +137,65 @@ class GardenToolController extends Controller
 
     }
 
+    public function ViewCart(Request $request) {
+
+        if (!$request->session()->has('cart')) {
+            return view('gardentool.cart');
+        }
+
+        $oldCart = $request->session()->get('cart');
+        $cart = new Cart($oldCart);
+        return view('gardentool.cart',
+            ['CartContent' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+
     public function AddToCart(Request $request, GardenTool $GardenTool)
     {
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
+
+        if ($GardenTool->stock < 1) {
+            return redirect('/')->with('add-to-cart-failed', 'This product is out of stock');
+        }
+
         $cart->Add($GardenTool, $GardenTool->id);
 
         $request->session()->put('cart', $cart);
         // dd($request->session()->get('cart'));
 
         return redirect('/');
+    }
+
+    public function ReduceByOne(Request $request, GardenTool $GardenTool) {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        $cart->ReduceByOne($GardenTool->id);
+
+        if (count($cart->items) > 0) {
+            $request->session()->put('cart', $cart);
+        }
+        else {
+            $request->session()->forget('cart');
+        }
+
+        return redirect();
+    }
+
+    public function RemoveItem(Request $request, $GardenTool) {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        $cart->RemoveItem($GardenTool->id);
+
+        if (count($cart->items) > 0) {
+            $request->session()->put('cart', $cart);
+        }
+        else {
+            $request->session()->forget('cart');
+        }
+
+
+        return redirect();
     }
 }
