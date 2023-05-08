@@ -182,7 +182,8 @@ class GardenToolController extends Controller
         return redirect('/cart/view');
     }
 
-    public function RemoveItem(Request $request, GardenTool $GardenTool) {
+    public function RemoveItem(Request $request, GardenTool $GardenTool)
+    {
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
 
@@ -195,6 +196,15 @@ class GardenToolController extends Controller
             $request->session()->forget('cart');
         }
 
+        return redirect('/cart/view');
+    }
+
+    public function ClearCart(Request $request)
+    {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        $request->session()->forget('cart');
 
         return redirect('/cart/view');
     }
