@@ -47,8 +47,11 @@ class Cart {
     }
 
     public function RemoveItem($id) {
+        $this->totalQuantity -= $this->items[$id]['quantity'];
         $this->items[$id]['quantity'] -= $this->items[$id]['quantity'];
+        $this->totalPrice -= $this->items[$id]['price'];
         $this->items[$id]['price'] -= $this->items[$id]['price'];
+
         unset($this->items[$id]);
     }
 }
