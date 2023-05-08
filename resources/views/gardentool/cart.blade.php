@@ -54,8 +54,12 @@
 
 
 
-                        <div class="d-flex justify-content-center p-3">
+                        <div class="d-flex justify-content-center p-3 gap-2">
+
+                            <a class="btn btn-secondary btn-lg" href="/cart/clear">Clear Cart</a>
+
                             <a class="btn btn-success btn-lg" href="#">Checkout</a>
+
                         </div>
                     @else
 
