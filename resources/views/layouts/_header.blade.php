@@ -57,13 +57,9 @@
 
                 <a class="nav-item nav-link btn btn-secondary {{ Request::is('cart/view') ? 'active' : '' }}" href="{{ url('/cart/view') }}"> <span class="badge bg-success">{{ Session::has('cart') ? Session::get('cart')->totalQuantity : '' }}</span> Shopping Cart <i class="fa-solid fa-shopping-cart"></i> </a>
 
-                @if ( Request::is('/'))
-
-                    @auth
-                        <a class="nav-item nav-link btn btn-secondary" href="#">Order History <i class="fa-solid fa-gifts"></i> </a>
-                    @endauth
-
-                @endif
+                {{-- @auth
+                    <a class="nav-item nav-link btn btn-secondary {{ Request::is('orders/*') ? 'active' : '' }}" href="/orders/{{ Auth::User()->id }}">Order History <i class="fa-solid fa-gifts"></i> </a>
+                @endauth --}}
 
                 <div class="dropstart">
                     <a
@@ -79,7 +75,7 @@
                     <div class="dropdown-menu bg-secondary me-0" aria-labelledby="navbarDropdownMenuLink">
 
                         @if (Auth::User())
-                            <a class="dropdown-item btn btn-secondary">{{ Auth::User()->first_name.' '.Auth::User()->last_name }}<i class="fa-solid fa-person"></i> </a>
+                            <a class="dropdown-item btn btn-secondary {{ Request::is('orders/*') ? 'active' : '' }}" href="/orders/{{ Auth::User()->id }}">{{ Auth::User()->first_name.' '.Auth::User()->last_name }}<i class="fa-solid fa-person"></i> </a>
 
                             @if (Auth::User()->role == 'admin')
                                 <a class="dropdown-item btn btn-secondary {{ Request::is('admin') ? 'active' : '' }} " href="{{ url('/admin') }}">Product Management <i class="fa-solid fa-toolbox"></i> </a>
