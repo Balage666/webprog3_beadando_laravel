@@ -23,9 +23,17 @@ Route::get('/gardentool/show/{GardenTool}', [GardenToolController::class, 'Show'
 
 Route::get('/cart/view', [GardenToolController::class, 'ViewCart']);
 Route::get('/cart/add/{GardenTool}', [GardenToolController::class, 'AddToCart']);
-Route::get('cart/reducebyone/{GardenTool}', [GardenToolController::class, 'ReduceByOne']);
-Route::get('/cart/remove/{GardenTool}', [GardenToolController::class, 'RemoveItem']);
-Route::get('/cart/clear', [GardenToolController::class, 'ClearCart']);
+
+Route::group(['middleware' => ['check.cart']], function () {
+    Route::get('/cart/reducebyone/{GardenTool}', [GardenToolController::class, 'ReduceByOne']);
+    Route::get('/cart/remove/{GardenTool}', [GardenToolController::class, 'RemoveItem']);
+
+    Route::get('/cart/clear', [GardenToolController::class, 'ClearCart']);
+
+    Route::get('/cart/checkout', [GardenToolController::class, 'Checkout']);
+    Route::post('/cart/checkout/{Cart}', [GardenToolController::class, 'ProcessCheckOut']);
+});
+
 
 Route::group(['middleware' => ['auth','auth.admin']], function () {
     Route::get('/admin', [AdminController::class, 'Index']);
