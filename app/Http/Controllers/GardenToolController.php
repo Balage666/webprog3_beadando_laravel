@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\GardenTool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -207,5 +209,40 @@ class GardenToolController extends Controller
         $request->session()->forget('cart');
 
         return redirect('/cart/view');
+    }
+
+    public function CheckOut(Request $request) {
+        $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        return view('gardentool.checkout', ['Cart' => $cart]);
+    }
+
+    public function ProcessCheckOut(Request $request) {
+
+        $oldCart = $request->session()->get('cart');
+        $cart = new Cart($oldCart);
+
+        $formFields = $request->validate([
+            'first_name' => ['required', 'min:3'],
+            'last_name' => ['required', 'min:3'],
+            'email' => ['required', 'email'],
+            'address' => ['required', 'min:8'],
+            'phone_number' => ['required', 'regex:/^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$/'],
+        ]);
+
+        $formFields['cart'] = serialize($cart);
+
+        $formFields['user_identifier'] = Auth::User() ? Auth::User()->email : 'guest';
+
+        $formFields['additional_information'] = $request['additional_information'] ? $request['additional_information'] : '';
+
+        Order::create($formFields);
+
+        $cart = null;
+        $request->session()->forget('cart');
+
+        return redirect('/')->with('message', 'Your order has been created!');
+
     }
 }
