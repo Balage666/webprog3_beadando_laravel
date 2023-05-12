@@ -56,9 +56,9 @@
 
                         <div class="d-flex justify-content-center p-3 gap-2">
 
-                            <a class="btn btn-secondary btn-lg" href="/cart/clear">Clear Cart</a>
+                            <a class="btn btn-secondary btn-lg" href="/cart/clear">Clear Cart <i class="fa-solid fa-circle-xmark"></i> </a>
 
-                            <a class="btn btn-success btn-lg" href="#">Checkout</a>
+                            <a class="btn btn-success btn-lg" href="/cart/checkout">Checkout <i class="fa-solid fa-cart-arrow-down"></i> </a>
 
                         </div>
                     @else
