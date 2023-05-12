@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GardenToolController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StoreFrontController;
 use App\Http\Controllers\UserController;
 use App\Models\GardenTool;
@@ -56,6 +57,11 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::get('/orders/{User}', [OrderController::class, 'View']);
+
+    Route::get('/orders/{User}/refund/{Order}', [OrderController::class, 'Refund']);
+
     Route::get('sign-out', [UserController::class, 'LogOut']);
 });
 
