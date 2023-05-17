@@ -10,7 +10,7 @@
         <div class="text-center bg-dark text-white p-5 rounded-5">
             <h1 class="display-1 fw-bold">{{ $exception->getStatusCode() }}</h1>
             <p class="fs-2">
-                <span class="text-warning">Opps!</span> You cannot access this page!.
+                <span class="text-warning">Opps!</span> You cannot access this page!
             </p>
             <p class="lead">
                 {{ $exception->getMessage() }}

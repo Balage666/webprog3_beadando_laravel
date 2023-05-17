@@ -74,8 +74,8 @@
 
                 <div class="d-flex justify-content-center gap-2">
 
-                    <button onclick="history.back();"
-                        class="btn btn-secondary btn-lg text-white">Go Back <i class="fa-solid fa-arrow-left"></i> </button>
+                    {{-- <button onclick="history.back();"
+                        class="btn btn-secondary btn-lg text-white">Go Back <i class="fa-solid fa-arrow-left"></i> </button> --}}
 
                     <button type="submit"
                         class="btn btn-primary btn-block btn-lg gradient-custom-4 text-white">Create <i class="fa-solid fa-square-plus"></i> </button>
