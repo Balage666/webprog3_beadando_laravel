@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+
+    laravel:
+        build: .
+        container_name: laravel_webprog3_container
+        ports:
+            - 80:80
+        environment:
+            APP_ENV: production
+            DB_HOST: mysql
+            DB_DATABASE: gardentools_laravel
+            DB_USERNAME: webprog3
+            DB_PASSWORD: webprog3
+
+    mysql:
+        image: mysql:8.0
+        container_name: mysql
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: gardentools_laravel
+            MYSQL_USER: webprog3
+            MYSQL_PASSWORD: webprog3
+            MYSQL_ROOT_PASSWORD: webprog3
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+            PMA_PORT: 3306
