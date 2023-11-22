@@ -3,7 +3,7 @@
         "rules": {
             "simplified_null_return": true,
             "class_definition": false,
-            "braces_position": false,
+            "curly_braces_position": false,
             "new_with_braces": {
                 "anonymous_class": false,
                 "named_class": false
