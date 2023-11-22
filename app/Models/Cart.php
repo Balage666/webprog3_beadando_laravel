@@ -37,7 +37,8 @@ class Cart
 
     }
 
-    public function ReduceByOne($id) {
+    public function ReduceByOne($id)
+    {
         $this->items[$id]['quantity']--;
         $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
         $this->totalQuantity--;
@@ -48,7 +49,8 @@ class Cart
         }
     }
 
-    public function RemoveItem($id) {
+    public function RemoveItem($id)
+    {
         $this->totalQuantity -= $this->items[$id]['quantity'];
         $this->items[$id]['quantity'] -= $this->items[$id]['quantity'];
         $this->totalPrice -= $this->items[$id]['price'];

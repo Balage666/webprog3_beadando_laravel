@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function SignUp() {
+    public function SignUp()
+    {
         return view('users.sign_up');
     }
 
-    public function LogIn(Request $request) {
+    public function LogIn(Request $request)
+    {
 
         $formFields = $request->validate([
             'email' => ['required', 'email'],
@@ -31,7 +33,8 @@ class UserController extends Controller
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
-    public function LogOut(Request $request) {
+    public function LogOut(Request $request)
+    {
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -39,11 +42,13 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function SignIn() {
+    public function SignIn()
+    {
         return view('users.sign_in');
     }
 
-    public function Registration(Request $request) {
+    public function Registration(Request $request)
+    {
 
         $formFields = $request->validate([
             'email' => ['required', 'email'],

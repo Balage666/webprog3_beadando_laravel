@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function Index(Request $request) {
+    public function Index(Request $request)
+    {
 
         $GardenTools = $request->searchInput ? GardenTool::where('name', 'LIKE', '%'.$request->searchInput.'%')
             ->orWhere('description', 'LIKE', '%'.$request->searchInput.'%')

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class StoreFrontController extends Controller
 {
-    public function Index(Request $request) {
+    public function Index(Request $request)
+    {
 
         //dd($request->searchInput);
         $GardenTools = $request->searchInput ? GardenTool::where('name', 'LIKE', '%'.$request->searchInput.'%')

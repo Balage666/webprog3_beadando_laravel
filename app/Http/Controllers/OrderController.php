@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-    public function View(Request $request, User $User) {
+    public function View(Request $request, User $User)
+    {
 
         if ($User->id != Auth::User()->id) {
             return abort(403);
@@ -26,7 +27,8 @@ class OrderController extends Controller
 
     }
 
-    public function Refund(User $User, Order $Order) {
+    public function Refund(User $User, Order $Order)
+    {
 
         if ($User->id != Auth::User()->id) {
             return abort(403);

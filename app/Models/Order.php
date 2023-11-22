@@ -17,7 +17,8 @@ class Order extends Model
         'additional_information',
     ];
 
-    public function Customer() {
+    public function Customer()
+    {
         return $this->belongsTo(User::class, 'email', 'user_identifier');
     }
 }

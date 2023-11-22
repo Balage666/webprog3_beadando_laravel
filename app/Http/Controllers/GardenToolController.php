@@ -134,7 +134,8 @@ class GardenToolController extends Controller
 
     }
 
-    public function ViewCart(Request $request) {
+    public function ViewCart(Request $request)
+    {
 
         if (! $request->session()->has('cart')) {
             return view('gardentool.cart');
@@ -164,7 +165,8 @@ class GardenToolController extends Controller
         return redirect('/');
     }
 
-    public function ReduceByOne(Request $request, GardenTool $GardenTool) {
+    public function ReduceByOne(Request $request, GardenTool $GardenTool)
+    {
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
 
@@ -205,14 +207,16 @@ class GardenToolController extends Controller
         return redirect('/cart/view');
     }
 
-    public function CheckOut(Request $request) {
+    public function CheckOut(Request $request)
+    {
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $cart = new Cart($oldCart);
 
         return view('gardentool.checkout', ['Cart' => $cart]);
     }
 
-    public function ProcessCheckOut(Request $request) {
+    public function ProcessCheckOut(Request $request)
+    {
 
         $oldCart = $request->session()->get('cart');
         $cart = new Cart($oldCart);
