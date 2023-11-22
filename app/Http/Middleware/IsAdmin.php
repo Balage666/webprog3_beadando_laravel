@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
 {
@@ -19,6 +19,7 @@ class IsAdmin
         if (Auth::User()->role == 'admin') {
             return $next($request);
         }
+
         return abort(403, 'You do not possess the necessary permissions for the target page!');
 
     }

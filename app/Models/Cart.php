@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-class Cart {
-
+class Cart
+{
     public $items;
+
     public $totalQuantity = 0;
+
     public $totalPrice = 0;
 
     public function __construct($oldCart)

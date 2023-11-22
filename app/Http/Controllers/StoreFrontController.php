@@ -11,7 +11,7 @@ class StoreFrontController extends Controller
 
         //dd($request->searchInput);
         $GardenTools = $request->searchInput ? GardenTool::where('name', 'LIKE', '%'.$request->searchInput.'%')
-        ->orWhere('description', 'LIKE', '%'.$request->searchInput.'%')->paginate(8) : GardenTool::paginate(8);
+            ->orWhere('description', 'LIKE', '%'.$request->searchInput.'%')->paginate(8) : GardenTool::paginate(8);
 
         // $GardenTools = [];
         return view('storefront.index', ['GardenTools' => $GardenTools]);

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Order;
 use App\Models\GardenTool;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class GardenToolController extends Controller
 {
-
     /**
      * Show the form for creating a new resource.
      */
@@ -30,16 +29,15 @@ class GardenToolController extends Controller
             'name' => ['required', 'min:3'],
             'stock' => ['required', 'gt:0'],
             'price' => ['required', 'gt:450'],
-            'image' => ['mimes:png,jpg']
+            'image' => ['mimes:png,jpg'],
         ]);
 
         // dd($request);
 
         if ($request['description']) {
             $formFields['description'] = $request['description'];
-        }
-        else {
-            $formFields['description'] = "Sample Description";
+        } else {
+            $formFields['description'] = 'Sample Description';
         }
 
         // dd($request->file('image'));
@@ -47,10 +45,8 @@ class GardenToolController extends Controller
         if ($request->hasFile('image')) {
             $formFields['image'] = $request->file('image')->store('/uploads', 'public');
             $formFields['image'] = '/storage/'.$formFields['image'];
-        }
-
-        else {
-            $formFields['image'] = "/assets/media/gardentools/def_market_gardener.png";
+        } else {
+            $formFields['image'] = '/assets/media/gardentools/def_market_gardener.png';
         }
 
         // dd($formFields['image']);
@@ -86,7 +82,7 @@ class GardenToolController extends Controller
             'name' => ['required', 'min:3'],
             'stock' => ['required', 'gt:0'],
             'price' => ['required', 'gt:450'],
-            'image' => ['mimes:png,jpg']
+            'image' => ['mimes:png,jpg'],
         ]);
 
         $formFields['description'] = $request['description'];
@@ -102,8 +98,7 @@ class GardenToolController extends Controller
             if (file_exists(public_path('/storage/'.$temp))) {
                 unlink(public_path($GardenTool->image));
             }
-        }
-        else {
+        } else {
 
             $formFields['image'] = $GardenTool->image;
         }
@@ -135,18 +130,19 @@ class GardenToolController extends Controller
             unlink(public_path('/storage/'.$temp));
         }
 
-        return redirect('/admin')->with('message','Tool has been deleted!');
+        return redirect('/admin')->with('message', 'Tool has been deleted!');
 
     }
 
     public function ViewCart(Request $request) {
 
-        if (!$request->session()->has('cart')) {
+        if (! $request->session()->has('cart')) {
             return view('gardentool.cart');
         }
 
         $oldCart = $request->session()->get('cart');
         $cart = new Cart($oldCart);
+
         return view('gardentool.cart',
             ['CartContent' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
@@ -176,8 +172,7 @@ class GardenToolController extends Controller
 
         if (count($cart->items) > 0) {
             $request->session()->put('cart', $cart);
-        }
-        else {
+        } else {
             $request->session()->forget('cart');
         }
 
@@ -193,8 +188,7 @@ class GardenToolController extends Controller
 
         if (count($cart->items) > 0) {
             $request->session()->put('cart', $cart);
-        }
-        else {
+        } else {
             $request->session()->forget('cart');
         }
 

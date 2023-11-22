@@ -14,6 +14,6 @@ class GardenTool extends Model
         'description',
         'price',
         'image',
-        'stock'
+        'stock',
     ];
 }

@@ -5,8 +5,6 @@ use App\Http\Controllers\GardenToolController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StoreFrontController;
 use App\Http\Controllers\UserController;
-use App\Models\GardenTool;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,8 +33,7 @@ Route::group(['middleware' => ['check.cart']], function () {
     Route::post('/cart/checkout/{Cart}', [GardenToolController::class, 'ProcessCheckOut']);
 });
 
-
-Route::group(['middleware' => ['auth','auth.admin']], function () {
+Route::group(['middleware' => ['auth', 'auth.admin']], function () {
     Route::get('/admin', [AdminController::class, 'Index']);
 
     Route::get('/gardentool/create', [GardenToolController::class, 'Create']);
@@ -64,4 +61,3 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('sign-out', [UserController::class, 'LogOut']);
 });
-

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -17,7 +16,7 @@ class UserController extends Controller
 
         $formFields = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
         ]);
 
         // dd($formFields);
@@ -25,6 +24,7 @@ class UserController extends Controller
         if (auth()->attempt($formFields)) {
 
             $request->session()->regenerate();
+
             return redirect('/')->with('message', 'Sign in succeeded!');
         }
 
@@ -35,6 +35,7 @@ class UserController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/');
     }
 
@@ -48,9 +49,8 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'first_name' => ['required', 'min:3'],
             'last_name' => ['required', 'min:3'],
-            'password' => ['required', 'confirmed', 'min:8']
+            'password' => ['required', 'confirmed', 'min:8'],
         ]);
-
 
         $formFields['first_name'] = trim($formFields['first_name']);
         $formFields['last_name'] = trim($formFields['last_name']);

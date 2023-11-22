@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -15,7 +14,7 @@ class Order extends Model
         'email',
         'address',
         'phone_number',
-        'additional_information'
+        'additional_information',
     ];
 
     public function Customer() {

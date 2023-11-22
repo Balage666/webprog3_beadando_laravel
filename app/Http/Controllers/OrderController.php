@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-
     public function View(Request $request, User $User) {
 
         if ($User->id != Auth::User()->id) {
@@ -39,5 +38,4 @@ class OrderController extends Controller
 
         return redirect('/')->with('message', 'You have refunded your order!');
     }
-
 }
