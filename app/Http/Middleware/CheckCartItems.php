@@ -15,7 +15,7 @@ class CheckCartItems
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!request()->session()->has('cart')) {
+        if (! request()->session()->has('cart')) {
             return redirect('/')->with('access-checkout-failed', 'You have no items in your cart!');
         }
 
